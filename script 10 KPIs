@@ -1,0 +1,53 @@
+-- 1 К-сть статей по команді
+SELECT TeamID, COUNT(*) AS NumberOfArtcile
+FROM Articles
+GROUP BY TeamID
+
+-- 2 найактивніший юзер (наибольша к-сть коментарів)
+SELECT TOP 1 UserID, COUNT(*) AS NumOfCom
+FROM Comments
+GROUP BY UserID
+ORDER BY COUNT(*) DESC
+
+-- 3 заг. к-сть коментів по статтям
+SELECT ArticleID, COUNT(*) AS NumberOfComment
+FROM Comments
+GROUP BY ArticleID
+
+-- 4 К-сть коментів по юзерам
+SELECT UserID, COUNT(*) AS NumberOfComments
+FROM Comments
+GROUP BY UserID
+
+-- 5 Топ-2 популярних команд по к-стю переглядів статей, звʼязаних з командою
+SELECT TOP 2 TeamID, COUNT(*) AS NumbOfViews
+FROM Articles
+WHERE TeamID IS NOT NULL
+GROUP BY TeamID
+ORDER BY COUNT(*) DESC
+
+-- 6 заг. к-сть переглядів статті
+SELECT COUNT(*) AS AllViews
+FROM ArticleViews
+
+-- 7 к-сть команд по лігам
+SELECT LeagueID, COUNT(*) AS NumberOfTeam
+FROM Teams
+GROUP BY LeagueID
+
+-- 8 К-сть коментарів, залишених користувачами кожній статті
+SELECT ArticleID, COUNT(*) AS NumOfCom
+FROM Comments
+GROUP BY ArticleID
+
+-- 9 Топ-3 по к--стю команд
+SELECT TOP 3 LeagueID, COUNT(*) AS NumbOfTeam
+FROM Teams
+GROUP BY LeagueID
+ORDER BY COUNT(*) DESC;
+
+-- 10 найпопулярніша стаття
+SELECT TOP 1 ArticleID, COUNT(*) AS NumbOfView
+FROM ArticleViews
+GROUP BY ArticleID
+ORDER BY COUNT(*) DESC
